@@ -3,21 +3,21 @@
 ## How to test project
 First, download all apps from [requirements.txt](requirements.txt)
 Then do a migration of the model
-'''bash
+```bash
 python manage.py makemigrations
 python manage.py migrate
-'''
+```
 After that you can test the project writing next code:
-'''bash 
+```bash 
 python manage.py runserver
-'''
+```
 
 ## How to test postman's collection?
 You can change authorization token in headers putting tick, and check taking and posting articles. Also there in the url writing number of certain article you can delete and partially update or fully (don't forget write new data in body).
 
 
 
-##Task:
+## Task:
 
 Using Django, create a simple API that allows users to post and retrieve their reviews.
 

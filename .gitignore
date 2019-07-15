@@ -3,4 +3,3 @@ myBlog/__pycache__/
 article/__pycache__/
 article/tests/__pycache__/
 article/migrations/__pycache__/
-db.sqlite3/

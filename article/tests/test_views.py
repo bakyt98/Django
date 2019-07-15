@@ -9,16 +9,16 @@ class ArticleTestApi(APITestCase):
     def setUp(self):
         self.client=APIClient()
         self.list_url=reverse('article-list')
-        self.auth_url=reverse('127.0.0.1:8000/api-token-auth/')
-        User.objects.create(username='bakyt', email='isimovabakyt@gmail.com', password='ghbdtn1234')
-        #self.tokenNew= Token.objects.get(user__username='bakyt')
-        self.token=self.client.post(self.auth_url, {'username':'bakyt', 'password': 'ghbdtn1234'}, content_type='application/json')
+        self.auth_url=reverse('api-token-auth')
+        self.user=User.objects.create(username='bakyt', email='isimovabakyt@gmail.com', password='ghbdtn1234')
+        self.tokenNew= Token.objects.get_or_create(user=self.user)[0]
+        self.token=self.client.post('127.0.0.1:8000/api-token-auth/', {'username':'bakyt', 'password': 'ghbdtn1234'}, content_type='application/json')
     
     def test_list(self):
-        print(self.token)
+        print(self.tokenNew)
         auth_headers={
-            "Authorization: Token "+ self.token
+            "Authorization: Token {self.tokenNew}"
         }
-        response=self.client.get(self.fetch_url, **auth_headers)
+        response=self.client.get(self.list_url, format='json',  **auth_headers)
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)

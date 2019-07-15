@@ -20,5 +20,5 @@ class Article(models.Model):
     reviewer = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
-        return str(self.id)+" "+self.title
+        return "{self.id} {self.title}"
 	

@@ -8,7 +8,7 @@ from rest_framework.response import Response
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
- 
+    
     def list(self, request, *args, **kwargs):
         if(request.user.is_superuser):
             articles = Article.objects.all()
