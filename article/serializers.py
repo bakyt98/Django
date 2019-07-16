@@ -13,3 +13,4 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = ('id', 'title', 'rating', 'summary', 'ip_address', 'submission_date', 
         'company')
+        

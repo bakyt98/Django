@@ -23,3 +23,4 @@ class ArticleTestApi(APITestCase):
         response=self.client.get(self.list_url, Authorization='Token {self.token}')
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK) 
+        

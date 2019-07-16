@@ -25,3 +25,4 @@ class ArticleTest(TestCase):
     def test_article_str(self):
         article=Article.objects.get(title='Waterpost')
         self.assertEqual(article.__str__(), ("{} Waterpost").format(str(article.id)))
+        
