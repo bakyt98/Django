@@ -15,7 +15,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
         else:
             author = User.objects.get(username=request.user.username)
             queryset = Article.objects.filter(reviewer=author.id)
-        #serializer = ArticleSerializer(articles, many=True)
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
