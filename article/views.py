@@ -11,11 +11,16 @@ class ArticleViewSet(viewsets.ModelViewSet):
     
     def list(self, request, *args, **kwargs):
         if(request.user.is_superuser):
-            articles = Article.objects.all()
+            queryset = Article.objects.all()
         else:
             author = User.objects.get(username=request.user.username)
-            articles = Article.objects.filter(reviewer=author.id)
-        serializer = ArticleSerializer(articles, many=True)
+            queryset = Article.objects.filter(reviewer=author.id)
+        #serializer = ArticleSerializer(articles, many=True)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
         
     def create(self, request, *args, **kwargs):
