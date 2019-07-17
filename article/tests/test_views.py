@@ -21,9 +21,7 @@ class ArticleTestApi(APITestCase):
         }
 
     def test_list(self):
-        
-        response=self.client.get('/api/article/', **self.auth_headers)
-        print(response.data)
+        response=self.client.get('/api/article/', **self.auth_headers)\
         self.assertEqual(response.status_code, status.HTTP_200_OK) 
 
     def test_create(self):
@@ -36,3 +34,4 @@ class ArticleTestApi(APITestCase):
         }
         response = self.client.post('/api/article/', data, **self.auth_headers)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
