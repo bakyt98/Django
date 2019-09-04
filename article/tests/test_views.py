@@ -32,3 +32,4 @@ class ArticleTestApi(APITestCase):
         response = self.client.post('/api/article/', data,
                                     Authorization='Token {self.token}')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
