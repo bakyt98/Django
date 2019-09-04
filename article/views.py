@@ -8,7 +8,7 @@ from rest_framework.response import Response
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    
+
     def list(self, request, *args, **kwargs):
         if(request.user.is_superuser):
             queryset = Article.objects.all()
@@ -21,7 +21,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
-        
+
     def create(self, request, *args, **kwargs):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -36,5 +36,5 @@ class ArticleViewSet(viewsets.ModelViewSet):
         serializer.validated_data["reviewer"] = author
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        
+        return Response(serializer.data, status=status.HTTP_201_CREATED,
+                        headers=headers)

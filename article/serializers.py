@@ -11,6 +11,5 @@ class CompanySerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'rating', 'summary', 'ip_address', 'submission_date', 
-        'company')
-        
+        fields = ('id', 'title', 'rating', 'summary', 'ip_address',
+                  'submission_date', 'company')
